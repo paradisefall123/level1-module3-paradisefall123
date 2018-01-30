@@ -18,9 +18,7 @@ public class CowTimer {
 
 	public static void main(String[] args) throws InterruptedException {
 		/* 1. Make a CowTimer, set the time and start it. */
-CowTimer ct = new CowTimer();
-ct.setTime(1);
-ct.playSound("moo.wav");
+
 	}
 
 	private int minutes;
@@ -38,8 +36,8 @@ ct.playSound("moo.wav");
 
 		/*
 		 * 3. When the timer is finished, use the playSound method to play a moo
-		 * sound. You can download one from freesound.org, then drag it into
-		 * your default package. Tell the students (by speaking) it's time to walk.
+		 * sound. You can use the .wav file in the default package, or you can download 
+		 * one from freesound.org, then drag it intothe default package. 
 		 */
 
 	}
