@@ -4,6 +4,7 @@
  */
 
 import java.awt.Component;
+import java.awt.Frame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.net.URL;
@@ -78,7 +79,7 @@ public class SimonSays extends KeyAdapter {
 
 		// 9. Pack the frame
 		
-		// 10.  Set the defaultCloseOperation of your from to JFRAME.EXIT_ON_CLOSE
+		// 10. Set the defaultCloseOperation of your from to JFrame.EXIT_ON_CLOSE
 		
 		// 11. Add a key listener to the frame
 
@@ -87,7 +88,7 @@ public class SimonSays extends KeyAdapter {
 		// 13. Use the Random and the speak method to either say 
 		// "Simon says press this key" or "Press this key"
 
-		// 14. Set the value of simonSays to true/false appropriately
+		// 14. Above, set the value of simonSays to true/false appropriately
 
 		
 	}
