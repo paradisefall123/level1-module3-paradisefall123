@@ -146,14 +146,13 @@ public class Jeopardy implements ActionListener {
 
 
 public void playJeopardyTheme() {
-		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("/Users/League/Google Drive/league-sounds/jeopardy.wav"));
-			Clip clip = AudioSystem.getClip();
-			clip.open(audioInputStream);
-			clip.start();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+	try {
+		AudioClip sound = JApplet.newAudioClip(Jeopardy.class.getResource("jeopardy.wav"));
+		sound.play();
+		Thread.sleep(3400);
+	} catch (Exception ex) {
+		ex.printStackTrace();
+	}
 	}
 
 	private void playSound(String fileName) {
