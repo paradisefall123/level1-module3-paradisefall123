@@ -3,7 +3,6 @@
  *    Level 1
  */
 
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -11,7 +10,9 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -25,21 +26,36 @@ public class Jukebox implements Runnable {
 		SwingUtilities.invokeLater(new Jukebox());
 	}
 
-           public void run() {
+	public void run() {
 
 		// 3. Find an mp3 on your computer or on the Internet.
 		// 4. Create a Song
-
+		Song sam = new Song("Sam Smith - I'm Not The Only One Lyrics.mp3");
+		Song star=new Song("All Star - Smash Mouth [Lyrics].mp3");
+		Song dino=new Song("Ariana Grande - thank u, next (Clean - Lyrics).mp3");
 		// 5. Play the Song
-
+		sam.play();
 		/*
-		 * 6. Create a user interface for your Jukebox so that the user can to
-		 * choose which song to play. You can use can use a different button for
-		 * each song, or a picture of the album cover. When the button or album
-		 * cover is clicked, stop the currently playing song, and play the one
-		 * that was selected.
+		 * 6. Create a user interface for your Jukebox so that the user can to choose
+		 * which song to play. You can use can use a different button for each song, or
+		 * a picture of the album cover. When the button or album cover is clicked, stop
+		 * the currently playing song, and play the one that was selected.
 		 */
-          }
+		JLabel smith = loadImage("samsmith.jpg");
+		JLabel ari=loadImage("thanks.png");
+		JLabel all=loadImage("allstars.jpg");
+		JFrame frame = new JFrame();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel panel = new JPanel();
+		frame.add(panel);
+		panel.add(smith);
+		panel.add(ari);
+		panel.add(all);
+		frame.pack();
+		
+	}
+
 	/* Use this method to add album covers to your Panel. */
 	private JLabel loadImage(String fileName) {
 		URL imageURL = getClass().getResource(fileName);
@@ -57,8 +73,7 @@ class Song {
 	private InputStream songStream;
 
 	/**
-	 * Songs can be constructed from files on your computer or Internet
-	 * addresses.
+	 * Songs can be constructed from files on your computer or Internet addresses.
 	 * 
 	 * Examples: <code> 
 	 * 		new Song("everywhere.mp3"); 	//from default package 
@@ -133,4 +148,3 @@ class Song {
 		}
 	}
 }
-
