@@ -1,8 +1,11 @@
+
 /*
  *    Copyright (c) The League of Amazing Programmers 2013-2018
  *    Level 1
  */
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -20,7 +23,10 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /* 1. Download the JavaZoom jar from here: http://bit.ly/javazoom
  * 2. Right click your project and add it as an External JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
+public class Jukebox implements Runnable, MouseListener {
+Song sam;
+Song star;
+Song dino;
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Jukebox());
@@ -30,20 +36,24 @@ public class Jukebox implements Runnable {
 
 		// 3. Find an mp3 on your computer or on the Internet.
 		// 4. Create a Song
-		Song sam = new Song("Sam Smith - I'm Not The Only One Lyrics.mp3");
-		Song star=new Song("All Star - Smash Mouth [Lyrics].mp3");
-		Song dino=new Song("Ariana Grande - thank u, next (Clean - Lyrics).mp3");
+		 sam = new Song("Sam Smith - I'm Not The Only One Lyrics.mp3");
+		 star = new Song("All Star - Smash Mouth [Lyrics].mp3");
+		 dino = new Song("Ariana Grande - thank u, next (Clean - Lyrics).mp3");
 		// 5. Play the Song
-		sam.play();
+		
 		/*
 		 * 6. Create a user interface for your Jukebox so that the user can to choose
 		 * which song to play. You can use can use a different button for each song, or
 		 * a picture of the album cover. When the button or album cover is clicked, stop
 		 * the currently playing song, and play the one that was selected.
 		 */
+
 		JLabel smith = loadImage("samsmith.jpg");
-		JLabel ari=loadImage("thanks.png");
-		JLabel all=loadImage("allstars.jpg");
+		smith.addMouseListener(this);
+		JLabel ari = loadImage("thanks.png");
+		ari.addMouseListener(this);
+		JLabel all = loadImage("allstars.jpg");
+		all.addMouseListener(this);
 		JFrame frame = new JFrame();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +63,34 @@ public class Jukebox implements Runnable {
 		panel.add(ari);
 		panel.add(all);
 		frame.pack();
+
 		
+		
+		
+		
+		
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		int mouseY = e.getY();
+		int mouseX = e.getX();
+		System.out.println("mouse clicked");
+		System.out.println("mouse x: " + e.getX());
+		System.out.println("mouse y:" + e.getY());
+		JLabel picClicked = (JLabel) e.getSource();
+		if(mouseX>=2 && mouseX<=299 && mouseY>=4 && mouseY<=295) {
+			dino.stop();
+			star.stop();
+		 sam.play();
+		}else if(mouseX>=3 && mouseX<=897 && mouseY>=5 && mouseY<=503) {
+			sam.stop();
+			star.stop();
+			dino.play();
+		}else if(mouseX>=3 && mouseX<=298 && mouseY>=5 && mouseY<=251) {
+			sam.stop();
+			dino.stop();
+			star.play();
+		}
 	}
 
 	/* Use this method to add album covers to your Panel. */
@@ -61,6 +98,30 @@ public class Jukebox implements Runnable {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
