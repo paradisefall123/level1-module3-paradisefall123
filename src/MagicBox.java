@@ -65,7 +65,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		String imageFile = "src/magic-box.jpg";
 		try {
 			backgroundImage = ImageIO.read(new File(imageFile));
-		} catch (IOException e) {
+		} catch (IOException e) { 
 			throw new Exception("Could not load image: " + imageFile);
 		}
 	}
@@ -83,6 +83,10 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		System.out.println("mouse clicked");
 		System.out.println("mouse x: " + e.getX());
 		System.out.println("mouse y:" + e.getY());
+		if(mouseX>=335 && mouseX<=363 && mouseY>=552  && mouseY<=567) {
+			
+		}
+		
 	}
 
 	@Override
