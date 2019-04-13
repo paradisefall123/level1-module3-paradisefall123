@@ -25,7 +25,6 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 
 public class Jukebox implements Runnable, MouseListener {
 Song sam;
-Song star;
 Song dino;
 
 	public static void main(String[] args) {
@@ -37,7 +36,6 @@ Song dino;
 		// 3. Find an mp3 on your computer or on the Internet.
 		// 4. Create a Song
 		 sam = new Song("Sam Smith - I'm Not The Only One Lyrics.mp3");
-		 star = new Song("All Star - Smash Mouth [Lyrics].mp3");
 		 dino = new Song("Ariana Grande - thank u, next (Clean - Lyrics).mp3");
 		// 5. Play the Song
 		
@@ -52,8 +50,6 @@ Song dino;
 		smith.addMouseListener(this);
 		JLabel ari = loadImage("thanks.png");
 		ari.addMouseListener(this);
-		JLabel all = loadImage("allstars.jpg");
-		all.addMouseListener(this);
 		JFrame frame = new JFrame();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,7 +57,6 @@ Song dino;
 		frame.add(panel);
 		panel.add(smith);
 		panel.add(ari);
-		panel.add(all);
 		frame.pack();
 
 		
@@ -80,16 +75,13 @@ Song dino;
 		JLabel picClicked = (JLabel) e.getSource();
 		if(mouseX>=2 && mouseX<=299 && mouseY>=4 && mouseY<=295) {
 			dino.stop();
-			star.stop();
+			
 		 sam.play();
 		}else if(mouseX>=3 && mouseX<=897 && mouseY>=5 && mouseY<=503) {
 			sam.stop();
-			star.stop();
+		
 			dino.play();
-		}else if(mouseX>=3 && mouseX<=298 && mouseY>=5 && mouseY<=251) {
-			sam.stop();
-			dino.stop();
-			star.play();
+		
 		}
 	}
 
