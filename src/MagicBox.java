@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -84,7 +85,20 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		System.out.println("mouse x: " + e.getX());
 		System.out.println("mouse y:" + e.getY());
 		if(mouseX>=335 && mouseX<=363 && mouseY>=552  && mouseY<=567) {
+			JFrame two=new JFrame();
+			two.setVisible(true);
+			MediaPalace mp=new MediaPalace();
+			JLabel jl=mp.loadImageFromWithinProject("illusion.jpg");
+			two.add(jl);
+			two.pack();
 			
+		}else if(mouseX>=428 && mouseX<=687 && mouseY>=702 && mouseY<=732) {
+			JFrame three=new JFrame();
+			three.setVisible(true);
+			MediaPalace pm=new MediaPalace();
+			JLabel lj=pm.loadImageFromWithinProject("bluebaba.jpg");
+			three.add(lj);
+			three.pack();
 		}
 		
 	}
