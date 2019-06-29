@@ -3,7 +3,11 @@ int y;
 int birdYVelocity=5;
 int gravity=6;
 int pipeX=300;
-int upperPipeHeight;
+int pipe2X=300;
+float upperPipeHeight;
+int lowerY=600;
+int upperY=0;
+int pipeGap=100;
 void draw() {
   background(101, 179, 188);
   fill(245, 234, 111);
@@ -15,14 +19,16 @@ void draw() {
   if (mousePressed) {
     y-=birdYVelocity;
   }
-  System.out.println(pipeX);
- 
+
   fill(92, 180, 66);
-  rect(pipeX, 0, 100, upperPipeHeight);
+  rect(pipeX,upperY, 100, upperPipeHeight);
   pipeX--;
-  float upperPipeHeight= random(100,400);
   teleportPipes();
-  
+  fill(92, 180, 66);
+  rect(pipe2X, lowerY, 100, 300);
+  pipe2X--;
+  teleportPipes();
+  lowerY = upperY + upperPipeHeight + pipeGap;
 } 
 void setup() {
   size(600, 900);
@@ -35,5 +41,8 @@ void mousePressed() {
 void teleportPipes() {
   if (pipeX<0) {
     pipeX=300;
+    upperPipeHeight= random(200, 500);
+  }else if(pipe2X<0){
+   pipe2X=300; 
   }
 }
