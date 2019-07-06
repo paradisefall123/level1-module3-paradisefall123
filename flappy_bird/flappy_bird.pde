@@ -3,11 +3,10 @@ int y;
 int birdYVelocity=5;
 int gravity=6;
 int pipeX=300;
-int pipe2X=300;
-float upperPipeHeight;
-int lowerY=600;
-int upperY=0;
-int pipeGap=100;
+int w=100;
+float upperPipeHeight=300;
+boolean ge=true;
+int lowerPipeTop=300;
 void draw() {
   background(101, 179, 188);
   fill(245, 234, 111);
@@ -21,28 +20,42 @@ void draw() {
   }
 
   fill(92, 180, 66);
-  rect(pipeX,upperY, 100, upperPipeHeight);
+  rect(pipeX, 0, w, upperPipeHeight);
   pipeX--;
   teleportPipes();
   fill(92, 180, 66);
-  rect(pipe2X, lowerY, 100, 300);
-  pipe2X--;
+  rect(pipeX, 600, w, lowerPipeTop);
+  pipeX--;
   teleportPipes();
-  lowerY = upperY + upperPipeHeight + pipeGap;
+  fill(46, 240, 60);
+  rect(0, 860, 900, 50);
+  if ( intersectsPipes()) {
+    textSize(32);
+    text("Game Ended", 10, 30);
+    //stop();
+  }
+  System.out.println(intersectsPipes());
 } 
 void setup() {
   size(600, 900);
   x=101;
   y=179;
 } 
-void mousePressed() {
-}
 
 void teleportPipes() {
   if (pipeX<0) {
     pipeX=300;
-    upperPipeHeight= random(200, 500);
-  }else if(pipe2X<0){
-   pipe2X=300; 
+    upperPipeHeight= random(300, 500);
+  }
+}
+boolean intersectsPipes() { 
+  if (y < upperPipeHeight && x > pipeX && x < (pipeX+w)) {
+      System.out.println("milk");
+    return true;
+  } else if (y>lowerPipeTop && x > pipeX && x < (pipeX+w)) {
+   System.out.println("cookies");
+    return true;
+  } else { 
+    return false;
   }
 }
