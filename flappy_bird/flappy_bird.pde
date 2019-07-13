@@ -7,6 +7,8 @@ int w=100;
 float upperPipeHeight=300;
 boolean ge=true;
 int lowerPipeTop=300;
+int upperY=0;
+int lowerY=600;
 void draw() {
   background(101, 179, 188);
   fill(245, 234, 111);
@@ -20,7 +22,7 @@ void draw() {
   }
 
   fill(92, 180, 66);
-  rect(pipeX, 0, w, upperPipeHeight);
+  rect(pipeX, upperY, w, upperPipeHeight);
   pipeX--;
   teleportPipes();
   fill(92, 180, 66);
@@ -29,12 +31,14 @@ void draw() {
   teleportPipes();
   fill(46, 240, 60);
   rect(0, 860, 900, 50);
+ // lowerY=upperY+upperPipeHeight+pipeGap;
   if ( intersectsPipes()) {
     textSize(32);
     text("Game Ended", 10, 30);
-    //stop();
-  }
-  System.out.println(intersectsPipes());
+    // stop();
+  } //}else if (x> ){
+    
+  //}
 } 
 void setup() {
   size(600, 900);
@@ -49,13 +53,14 @@ void teleportPipes() {
   }
 }
 boolean intersectsPipes() { 
-  if (y < upperPipeHeight && x > pipeX && x < (pipeX+w)) {
-      System.out.println("milk");
+  if ( y < upperPipeHeight && x > pipeX && x < (pipeX+w)) {
+    System.out.println("hit upperpipe");
     return true;
-  } else if (y>lowerPipeTop && x > pipeX && x < (pipeX+w)) {
-   System.out.println("cookies");
+  } else if (y >= lowerPipeTop && x > pipeX && x < (pipeX+w)) {
+    System.out.println("hit lower pipe value y " + y + " upperPH " + upperPipeHeight);
     return true;
   } else { 
     return false;
   }
 }
+make two if statements to check if the bird touches the pipe
