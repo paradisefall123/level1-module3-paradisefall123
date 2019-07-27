@@ -1,4 +1,4 @@
-int x;
+int x=0;
 int y;
 int birdYVelocity=5;
 int gravity=6;
@@ -9,6 +9,7 @@ boolean ge=true;
 int lowerPipeTop=300;
 int upperY=0;
 int lowerY=600;
+int score;
 void draw() {
   background(101, 179, 188);
   fill(245, 234, 111);
@@ -20,6 +21,11 @@ void draw() {
   if (mousePressed) {
     y-=birdYVelocity;
   }
+  textSize(30);
+text("Your Score Is "+score,20,60);
+System.out.println("value of x is " +x +" and value of pipe x is " +pipeX);
+
+
 
   fill(92, 180, 66);
   rect(pipeX, upperY, w, upperPipeHeight);
@@ -31,14 +37,26 @@ void draw() {
   teleportPipes();
   fill(46, 240, 60);
   rect(0, 860, 900, 50);
- // lowerY=upperY+upperPipeHeight+pipeGap;
+  if(y<50 && x>0 && x< (0+900)){
+    textSize(50);
+    text("Game Ended",60,30);
+    stop();   
+  }
+
   if ( intersectsPipes()) {
     textSize(32);
     text("Game Ended", 10, 30);
-    // stop();
-  } //}else if (x> ){
+    stop();
+  }
+  
+  if(x>=pipeX) {
+    score++;
     
-  //}
+    
+    
+    
+  }
+  
 } 
 void setup() {
   size(600, 900);
@@ -48,19 +66,19 @@ void setup() {
 
 void teleportPipes() {
   if (pipeX<0) {
-    pipeX=300;
+    pipeX=600;
     upperPipeHeight= random(300, 500);
-  }
+     
+}
 }
 boolean intersectsPipes() { 
   if ( y < upperPipeHeight && x > pipeX && x < (pipeX+w)) {
-    System.out.println("hit upperpipe");
+
     return true;
-  } else if (y >= lowerPipeTop && x > pipeX && x < (pipeX+w)) {
-    System.out.println("hit lower pipe value y " + y + " upperPH " + upperPipeHeight);
+  } else if (y >= 600 && x > pipeX && x < (pipeX+w)) {
+
     return true;
   } else { 
     return false;
   }
 }
-make two if statements to check if the bird touches the pipe
